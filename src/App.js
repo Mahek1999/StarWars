@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import PlanetSelector from "./Components/PlanetSelector";
+import PeopleList from "./Components/PeopleList";
+import "./App.css";
+import video from './Asset/war1.mp4';
 
-function App() {
+const App = () => {
+  const [selectedPlanet, setSelectedPlanet] = useState("");
+
+  const handlePlanetSelect = (planet) => {
+    setSelectedPlanet(planet);
+  };
+
+  //using a background video
+  useEffect(() => {
+    const video = document.getElementById("background-video");
+    video.play();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="video-background">
+      <video id="background-video" className="video" autoPlay loop muted>
+        <source src={video} type="video/mp4" />
+        {/* Add other video formats here, if needed */}
+      </video>
+      <div className="overlay"></div>
+      <div className="content">
+        <h1 className="star">Star Wars Planet Search</h1>
+        {/* A planet is selected */}
+        <PlanetSelector onPlanetSelect={handlePlanetSelect} />
+        {selectedPlanet && <PeopleList selectedPlanet={selectedPlanet} />}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
