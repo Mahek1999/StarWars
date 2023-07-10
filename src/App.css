@@ -98,3 +98,19 @@ body {
   font-size: 20px;
   padding: 20px;
 }
+
+#planet {
+  width: 300px; /* Set the width of the dropdown */
+  height: 40px; /* Set the height of the dropdown */
+  font-size: 16px; /* Set the font size of the options */
+  border: 1px solid #ccc; /* Add a border to the dropdown */
+  border-radius: 5px; /* Add rounded corners to the dropdown */
+  padding: 5px; /* Add some padding inside the dropdown */
+  background-color: #fff; /* Set the background color of the dropdown */
+  /* Add any other desired styles to customize the dropdown */
+}
+
+#planet option {
+  font-size: 16px; /* Set the font size of the options */
+  /* Add any other desired styles to customize the options */
+}
