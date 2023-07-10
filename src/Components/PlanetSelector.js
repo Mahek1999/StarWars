@@ -35,7 +35,7 @@ const PlanetSelector = ({ onPlanetSelect }) => {
 
   return (
     <div>
-      <label htmlFor="planet" className="select"> Select a planet:</label>
+      <label htmlFor="planet" className="select"> Please Select a planet:</label>
       <select id="planet" value={selectedPlanet} onChange={handlePlanetChange}>
         <option value=""></option>
         {planets.map((planet) => (
