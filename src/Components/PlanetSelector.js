@@ -6,10 +6,25 @@ const PlanetSelector = ({ onPlanetSelect }) => {
   const [selectedPlanet, setSelectedPlanet] = useState("");
 
   //Getting planet names for the dropdown
-  useEffect(() => {
-    axios.get("https://swapi.dev/api/planets/").then((response) => {
-      setPlanets(response.data.results);
-    });
+
+ useEffect(() => {
+    const fetchPlanets = async () => {
+      let nextPage = "https://swapi.dev/api/planets/";
+      let allPlanets = [];
+
+      while (nextPage) {
+        const response = await axios.get(nextPage);
+        //const { results, next } = response.data;
+        const results = response.data.results;
+        const next = response.data.next;
+        allPlanets = [...allPlanets, ...results];
+        nextPage = next;
+      }
+
+      setPlanets(allPlanets);
+    };
+
+    fetchPlanets();
   }, []);
  
   //A planet name is selected name is selected from dropdown
@@ -22,7 +37,7 @@ const PlanetSelector = ({ onPlanetSelect }) => {
     <div>
       <label htmlFor="planet" className="select"> Select a planet:</label>
       <select id="planet" value={selectedPlanet} onChange={handlePlanetChange}>
-        <option value="">Select a planet</option>
+        <option value=""></option>
         {planets.map((planet) => (
           <option key={planet.name} value={planet.name}>
             {planet.name}

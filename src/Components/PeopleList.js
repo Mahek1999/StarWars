@@ -15,7 +15,7 @@ const PeopleList = ({ selectedPlanet }) => {
     setIsLoading(true);
     axios
       .get(`https://swapi.dev/api/planets`, {
-        params: { search: selectedPlanet, page },
+        params: { search: selectedPlanet },
       })
       .then((response) => {
         const residents = response.data.results[0].residents;
